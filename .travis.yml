@@ -1,0 +1,26 @@
+#Define Linux Environment
+dist: xenial
+language: bash
+
+branches:
+  only:
+    -master
+before_installation:
+  - wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+  - unzip terraform_0.12.24_linux_amd64.zip
+  - sudo mv ./terraform ~/bin
+  - terraform --version
+jobs:
+  include:
+    - stage: terraform init
+      script:
+        - terraform init -force-copy
+    - stage: terraform plan
+      script:
+        - terraform plan
+    - stage: terraform apply
+      script:
+        - terraform apply -auto-approve
+     - stage: terraform destroy
+      script:
+        - terraform destroy -auto-approve
