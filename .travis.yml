@@ -12,9 +12,9 @@ before_install:
  - terraform --version
 jobs:
  include:
- - stage: terraform init -backend-config="token=${TF_API_TOKEN}"
+ - stage: terraform init 
    script:
-   - terraform init -force-copy
+   - terraform init -backend-config="token=${TF_API_TOKEN}"
  - stage: terraform plan
    script:
    - terraform plan
