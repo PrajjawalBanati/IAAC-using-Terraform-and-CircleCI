@@ -15,7 +15,7 @@ jobs:
  - stage: terraform init
    if: type IN (push) and branch = master
    script:
-   - terraform init -force-copy
+   - terraform init -backend-config="token=${TF_API_TOKEN}" 
  - stage: terraform plan
    if: type IN (push) and branch = master
    script:
