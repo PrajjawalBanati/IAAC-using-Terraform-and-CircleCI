@@ -1,5 +1,5 @@
 #Define Linux Environment
-dist: xenial
+dist: bionic
 language: bash
 
 branches:
@@ -15,7 +15,7 @@ jobs:
  - stage: terraform init
    if: type IN (push) and branch = master
    script:
-   - terraform init -backend-config="token=${TF_API_TOKEN}" 
+   - terraform init 
  - stage: terraform plan
    if: type IN (push) and branch = master
    script:
