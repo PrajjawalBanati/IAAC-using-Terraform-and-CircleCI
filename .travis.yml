@@ -11,20 +11,20 @@ before_installation:
   - sudo mv ./terraform ~/bin
   - terraform --version
 jobs:
-  include:
-    - stage: terraform init
-      if: type IN (push) and branch = master
-      script:
-        - terraform init -force-copy
-    - stage: terraform plan
-      if: type IN (push) and branch = master
-      script:
-        - terraform plan
-    - stage: terraform apply
-      if: type IN (push) and branch = master
-      script:
-        - terraform apply -auto-approve
-     - stage: terraform destroy
-      if: type IN (push) and branch = master
-      script:
-        - terraform destroy -auto-approve
+ include:
+ - stage: terraform init
+   if: type IN (push) and branch = master
+   script:
+   - terraform init -force-copy
+ - stage: terraform plan
+   if: type IN (push) and branch = master
+   script:
+   - terraform plan
+ - stage: terraform apply
+   if: type IN (push) and branch = master
+   script:
+   - terraform apply -auto-approve
+ - stage: terraform destroy
+   if: type IN (push) and branch = master
+   script:
+   - terraform destroy -auto-approve
